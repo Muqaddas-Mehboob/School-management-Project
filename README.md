@@ -47,7 +47,18 @@ http://localhost/School-management-Project/
 
 (FOR FRONTEND FOLDER)
 ```bash
-http://localhost/School-management-Project/frontend/index.html
+cd frontend
+```
+- Install node modules
+
+```bash
+npm i
+```
+
+- Run the frontend app
+
+```bash
+npm run dev
 ```
 
 (FOR BACKEND FOLDER)
