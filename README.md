@@ -61,6 +61,8 @@ npm i
 npm run dev
 ```
 
+- Your frontend page will display "Welcome to school Managament Project"
+
 (FOR BACKEND FOLDER)
 ```bash
 http://localhost/School-management-Project/backend/index.html
