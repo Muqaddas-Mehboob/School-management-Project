@@ -1,10 +1,11 @@
+import StudentProgressReport from '../pages/StudentProgressReport'
 import './App.css'
 
 function App() {
 
   return (
     <>
-    <h1>Welcome to School Managment Project</h1>
+    <StudentProgressReport/>
     </>
   )
 }
