@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { SettingsSidebar } from './layout/SettingsSidebar';
-import { SettingsHeader } from './layout/SettingsHeader';
-import { SettingsFooter } from './layout/SettingsFooter';
+import { useState } from "react";
+import { SettingsSidebar } from "./layout/SettingsSidebar";
+import { SettingsHeader } from "./layout/SettingsHeader";
+import { SettingsFooter } from "./layout/SettingsFooter";
 
 export function SettingsLayout({ children, activeSection, onSectionChange }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -12,10 +12,10 @@ export function SettingsLayout({ children, activeSection, onSectionChange }) {
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-100">
+    <div className="min-h-screen flex bg-background ">
       {/* Sidebar - Desktop & Mobile */}
-      <SettingsSidebar 
-        activeSection={activeSection} 
+      <SettingsSidebar
+        activeSection={activeSection}
         onSectionChange={handleSectionChange}
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
@@ -23,8 +23,8 @@ export function SettingsLayout({ children, activeSection, onSectionChange }) {
 
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+        <div
+          className="fixed inset-0 bg-foreground/50 z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
@@ -36,9 +36,7 @@ export function SettingsLayout({ children, activeSection, onSectionChange }) {
 
         {/* Content */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
-          <div className="max-w-4xl mx-auto">
-            {children}
-          </div>
+          <div className="max-w-4xl mx-auto">{children}</div>
         </main>
 
         {/* Footer */}

@@ -1,10 +1,14 @@
-import { useState } from 'react';
-import { Sidebar } from '../teacher_components/layout/Sidebar';
-import { DashboardLayout } from '../teacher_components/layout/DashboardLayout';
-import { ChevronLeft, ChevronRight, Plus, Calendar as CalendarIcon, Menu } from 'lucide-react';
-import { WeeklySchedule } from '../teacher_components/schedule/WeeklySchedule';
-import { DaySchedule } from '../teacher_components/schedule/DaySchedule';
-import { AddEventModal } from '../teacher_components/schedule/AddEventModal';
+import { useState } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Plus,
+  Calendar as CalendarIcon,
+} from "lucide-react";
+import { DashboardLayout } from "../teacher_components/layout/DashboardLayout";
+import { WeeklySchedule } from "../teacher_components/schedule/WeeklySchedule";
+import { DaySchedule } from "../teacher_components/schedule/DaySchedule";
+import { AddEventModal } from "../teacher_components/schedule/AddEventModal";
 
 const mockEvents = [
   // Monday
@@ -152,138 +156,146 @@ const mockEvents = [
   }
 ];
 
-export default function App() {
+export default function Schedule() {
   const [currentWeekStart, setCurrentWeekStart] = useState(() => {
     const now = new Date();
     const day = now.getDay();
     const diff = now.getDate() - day + (day === 0 ? -6 : 1);
     return new Date(now.setDate(diff));
   });
-  
+
   const [events, setEvents] = useState(mockEvents);
   const [showAddModal, setShowAddModal] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [viewMode, setViewMode] = useState('week');
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [viewMode, setViewMode] = useState("week");
 
-  const navigateWeek = (direction) => {
-    const newDate = new Date(currentWeekStart);
-    newDate.setDate(currentWeekStart.getDate() + (direction === 'next' ? 7 : -7));
-    setCurrentWeekStart(newDate);
+  const navigateWeek = (dir) => {
+    const d = new Date(currentWeekStart);
+    d.setDate(d.getDate() + (dir === "next" ? 7 : -7));
+    setCurrentWeekStart(d);
   };
 
-  const navigateDay = (direction) => {
+  const navigateDay = (dir) => {
     if (!selectedDate) return;
-    const newDate = new Date(selectedDate);
-    newDate.setDate(selectedDate.getDate() + (direction === 'next' ? 1 : -1));
-    setSelectedDate(newDate);
-  };
-
-  const handleAddEvent = (event) => {
-    const newEvent = {
-      ...event,
-      id: Date.now().toString()
-    };
-    setEvents([...events, newEvent]);
-    setShowAddModal(false);
+    const d = new Date(selectedDate);
+    d.setDate(d.getDate() + (dir === "next" ? 1 : -1));
+    setSelectedDate(d);
   };
 
   const getWeekRange = () => {
-    const endDate = new Date(currentWeekStart);
-    endDate.setDate(currentWeekStart.getDate() + 6);
-    
-    return `${currentWeekStart.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${endDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
-  };
-
-  const handleDayClick = (date) => {
-    setSelectedDate(date);
-    setViewMode('day');
+    const end = new Date(currentWeekStart);
+    end.setDate(currentWeekStart.getDate() + 6);
+    return `${currentWeekStart.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    })} - ${end.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    })}`;
   };
 
   return (
     <DashboardLayout pageTitle="Schedule">
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex flex-col flex-1 overflow-hidden">
         {/* Header */}
-        <div className="bg-white border-b p-2 sm:p-3 md:p-4 lg:p-6" style={{ borderColor: '#e5e7eb' }}>
-          <div className="flex items-center justify-between mb-2 sm:mb-3 md:mb-4">
-            <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
-              {/* Mobile Menu Button */}
-                {/* <button
-                    onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="lg:hidden p-1.5 sm:p-2 rounded-lg text-white hover:opacity-90 transition-opacity"
-                    style={{ backgroundColor: '#0e2038' }}
-                >
-                    <Menu className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
-                </button> */}
-              
-              <div>
-                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl" style={{ color: '#0e2038' }}>Schedule</h1>
-                <p className="text-[9px] xs:text-xs sm:text-sm text-gray-500 mt-0.5 sm:mt-1">Manage your classes and events</p>
-              </div>
+        <div className="bg-background border-b border-border p-2 sm:p-4 lg:p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground">
+                Schedule
+              </h1>
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                Manage your classes and events
+              </p>
             </div>
+
             <button
               onClick={() => setShowAddModal(true)}
-              className="px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-lg text-white flex items-center gap-1 sm:gap-2 hover:opacity-90 transition-opacity text-[10px] xs:text-xs sm:text-sm"
-              style={{ backgroundColor: '#ff9900' }}
+              className="
+                flex items-center gap-2
+                px-3 sm:px-4 py-2
+                rounded-lg
+                bg-primary
+                text-primary-foreground
+                hover:bg-primary/90
+                transition-colors
+                text-xs sm:text-sm
+              "
             >
-              <Plus className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+              <Plus className="w-4 h-4" />
               <span className="hidden sm:inline">Add Event</span>
             </button>
           </div>
 
           {/* Navigation */}
-          <div className="flex items-center justify-between flex-wrap gap-2 sm:gap-3 md:gap-4">
-            <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center justify-between gap-3 flex-wrap">
+            <div className="flex items-center gap-2">
               <button
-                onClick={() => viewMode === 'week' ? navigateWeek('prev') : navigateDay('prev')}
-                className="p-1 sm:p-1.5 md:p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                style={{ color: '#0e2038' }}
+                onClick={() =>
+                  viewMode === "week"
+                    ? navigateWeek("prev")
+                    : navigateDay("prev")
+                }
+                className="p-2 rounded-lg hover:bg-muted transition-colors text-foreground"
               >
-                <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
-              
-              <div className="px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-lg" style={{ backgroundColor: '#f3f4f6', color: '#0e2038' }}>
-                <div className="flex items-center gap-1 sm:gap-2">
-                  <CalendarIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4" />
-                  <span className="text-[10px] xs:text-xs sm:text-sm md:text-base">
-                    {viewMode === 'week' 
-                      ? getWeekRange() 
-                      : selectedDate?.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-                  </span>
-                </div>
+
+              <div className="flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary text-secondary-foreground">
+                <CalendarIcon className="w-4 h-4" />
+                <span className="text-xs sm:text-sm">
+                  {viewMode === "week"
+                    ? getWeekRange()
+                    : selectedDate?.toLocaleDateString("en-US", {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                </span>
               </div>
-              
+
               <button
-                onClick={() => viewMode === 'week' ? navigateWeek('next') : navigateDay('next')}
-                className="p-1 sm:p-1.5 md:p-2 hover:bg-gray-100 rounded-lg transition-colors"
-                style={{ color: '#0e2038' }}
+                onClick={() =>
+                  viewMode === "week"
+                    ? navigateWeek("next")
+                    : navigateDay("next")
+                }
+                className="p-2 rounded-lg hover:bg-muted transition-colors text-foreground"
               >
-                <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="flex gap-1 sm:gap-2">
+            {/* View Switch */}
+            <div className="flex gap-2">
               <button
-                onClick={() => setViewMode('week')}
-                className="px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-lg text-[10px] xs:text-xs sm:text-sm transition-colors"
-                style={{
-                  backgroundColor: viewMode === 'week' ? '#ff9900' : 'transparent',
-                  color: viewMode === 'week' ? 'white' : '#0e2038'
-                }}
+                onClick={() => setViewMode("week")}
+                className={`
+                  px-3 py-2 rounded-lg text-xs sm:text-sm transition-colors
+                  ${
+                    viewMode === "week"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground hover:bg-muted"
+                  }
+                `}
               >
                 Week
               </button>
+
               <button
                 onClick={() => {
-                  setViewMode('day');
+                  setViewMode("day");
                   if (!selectedDate) setSelectedDate(new Date());
                 }}
-                className="px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-lg text-[10px] xs:text-xs sm:text-sm transition-colors"
-                style={{
-                  backgroundColor: viewMode === 'day' ? '#ff9900' : 'transparent',
-                  color: viewMode === 'day' ? 'white' : '#0e2038'
-                }}
+                className={`
+                  px-3 py-2 rounded-lg text-xs sm:text-sm transition-colors
+                  ${
+                    viewMode === "day"
+                      ? "bg-primary text-primary-foreground"
+                      : "text-foreground hover:bg-muted"
+                  }
+                `}
               >
                 Day
               </button>
@@ -291,28 +303,29 @@ export default function App() {
           </div>
         </div>
 
-        {/* Schedule Content */}
-        <div className="flex-1 overflow-hidden">
-          {viewMode === 'week' ? (
+        {/* Content */}
+        <div className="flex-1 overflow-hidden bg-background">
+          {viewMode === "week" ? (
             <WeeklySchedule
               weekStart={currentWeekStart}
               events={events}
-              onDayClick={handleDayClick}
+              onDayClick={(d) => {
+                setSelectedDate(d);
+                setViewMode("day");
+              }}
             />
           ) : (
-            <DaySchedule
-              date={selectedDate || new Date()}
-              events={events}
-            />
+            <DaySchedule date={selectedDate || new Date()} events={events} />
           )}
         </div>
       </div>
 
-      {/* Add Event Modal */}
       {showAddModal && (
         <AddEventModal
           onClose={() => setShowAddModal(false)}
-          onAdd={handleAddEvent}
+          onAdd={(e) =>
+            setEvents((prev) => [...prev, { ...e, id: Date.now().toString() }])
+          }
         />
       )}
     </DashboardLayout>

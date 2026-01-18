@@ -114,9 +114,9 @@ export default function Grades() {
   return (
     <DashboardLayout pageTitle="Grades">
       {/* Controls */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 mb-4 sm:mb-6 ">
         <Select value={selectedClass} onValueChange={setSelectedClass}>
-          <SelectTrigger className="w-32 sm:w-40 h-8 sm:h-10 text-xs sm:text-sm">
+          <SelectTrigger className="w-32 sm:w-40 h-8 sm:h-10 text-xs sm:text-sm bg-background">
             <SelectValue placeholder="Select class" />
           </SelectTrigger>
           <SelectContent>
@@ -126,7 +126,7 @@ export default function Grades() {
           </SelectContent>
         </Select>
         <div className="flex gap-1 sm:gap-2">
-          <Button variant="outline" className="h-8 sm:h-10 text-xs sm:text-sm px-2 sm:px-4">Export Grades</Button>
+          <Button variant="outline" className="h-8 sm:h-10 text-xs sm:text-sm px-2 sm:px-4 bg-background">Export Grades</Button>
           <Button className="bg-primary hover:bg-primary/90 h-8 sm:h-10 text-xs sm:text-sm px-2 sm:px-4">Save Changes</Button>
         </div>
       </div>

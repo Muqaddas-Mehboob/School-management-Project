@@ -3,23 +3,25 @@ import { Link } from 'react-router-dom';
 
 export function SettingsHeader({ onMenuClick }) {
   return (
-    <header className="bg-white border-b px-4 sm:px-6 py-3 sm:py-4 flex items-center gap-3 justify-between">
+    <header className="flex items-center justify-between border-b border-border bg-background px-4 py-3 sm:px-6 sm:py-4">
+      
       {/* Mobile Menu Button */}
       <button
         onClick={onMenuClick}
-        className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors -ml-2"
         aria-label="Open menu"
+        className="rounded-md p-2 text-foreground transition hover:bg-muted lg:hidden"
       >
-        <Menu className="w-5 h-5 text-gray-700" />
+        <Menu className="h-5 w-5" />
       </button>
 
-      {/* Back to Dashboard Button */}
-      <button className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors">
-        <Link className="flex items-center gap-2" to="/teacherdashboard">
-        <ArrowLeft className="w-4 h-4" />
-        <span className="text-[10px] xs:text-xs sm:text-sm">Back to Dashboard</span>
-        </Link>
-      </button>
+      {/* Back Button */}
+      <Link
+        to="/teacherdashboard"
+        className="flex items-center gap-2 text-sm font-medium text-muted-foreground transition hover:text-foreground"
+      >
+        <ArrowLeft className="h-4 w-4" />
+        <span>Back to Dashboard</span>
+      </Link>
     </header>
   );
 }

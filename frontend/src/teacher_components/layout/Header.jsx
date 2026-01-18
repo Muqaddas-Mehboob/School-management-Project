@@ -12,7 +12,7 @@ import {
 
 export function Header({ pageTitle, children }) {
   return (
-    <header className="sticky top-0 z-30 bg-white border-b border-border">
+    <header className="sticky top-0 z-30 bg-background border-b border-border">
       <div className="flex items-center justify-between h-10 xs:h-12 sm:h-14 md:h-16 px-1 xs:px-2 sm:px-4 md:px-6 lg:px-8">
         {/* Left section */}
         <div className="flex items-center gap-1 xs:gap-2 sm:gap-4 min-w-0 flex-1">
@@ -32,7 +32,7 @@ export function Header({ pageTitle, children }) {
           {/* Notifications */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="relative h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10">
+              <Button variant="ghost" size="icon" className="relative h-7 w-7 xs:h-8 xs:w-8 sm:h-10 sm:w-10 text-foreground">
                 <Bell className="h-3.5 w-3.5 xs:h-4 xs:w-4 sm:h-5 sm:w-5" />
                 <span className="absolute top-0.5 right-0.5 xs:top-1 xs:right-1 w-1 h-1 xs:w-1.5 xs:h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full animate-pulse" />
               </Button>

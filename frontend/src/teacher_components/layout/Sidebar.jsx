@@ -31,7 +31,7 @@ export function Sidebar({ onClose }) {
     { icon: GraduationCap, label: "Grades", path: "/grades" },
     { icon: Calendar, label: "Schedule", path: "/schedule" },
     { icon: FileText, label: "Assignments", path: "/Assignments" },
-    { icon: MessageSquare, label: "Messages", path: "/messages" },
+    // { icon: MessageSquare, label: "Messages", path: "/messages" },
   ];
 
   const bottomMenuItems = [

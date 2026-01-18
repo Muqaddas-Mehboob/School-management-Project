@@ -8,7 +8,7 @@ export function DashboardLayout({ children, pageTitle }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-background flex ">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
         <div

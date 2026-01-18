@@ -61,8 +61,8 @@ export default function Attendance() {
       {/* Controls */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 mb-4 sm:mb-6">
         <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 flex-wrap w-full sm:w-auto">
-          <Select value={selectedClass} onValueChange={setSelectedClass}>
-            <SelectTrigger className="w-[calc(50%-0.25rem)] min-w-[80px] sm:w-32 md:w-40 h-7 sm:h-8 md:h-10 text-[10px] xs:text-xs sm:text-sm">
+          <Select value={selectedClass} onValueChange={setSelectedClass} >
+            <SelectTrigger className="w-[calc(50%-0.25rem)] min-w-[80px]  bg-background sm:w-32 md:w-40 h-7 sm:h-8 md:h-10 text-[10px] xs:text-xs sm:text-sm">
               <SelectValue placeholder="Select class" />
             </SelectTrigger>
             <SelectContent>
@@ -76,7 +76,7 @@ export default function Attendance() {
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
-                className="w-[calc(50%-0.25rem)] min-w-[80px] sm:w-auto h-7 sm:h-8 md:h-10 text-[10px] xs:text-xs sm:text-sm justify-start text-left font-normal px-2 sm:px-3"
+                className="w-[calc(50%-0.25rem)] min-w-[80px] sm:w-auto h-7 bg-background sm:h-8 md:h-10 text-[10px] xs:text-xs sm:text-sm justify-start text-left font-normal px-2 sm:px-3"
               >
                 <CalendarIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3 md:w-4 md:h-4 mr-1 sm:mr-2 flex-shrink-0" />
                 <span className="truncate">
