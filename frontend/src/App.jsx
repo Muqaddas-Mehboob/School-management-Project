@@ -1,10 +1,11 @@
 import './App.css'
+import Dashboard from './pages/AdminDashboard'
 
 function App() {
 
   return (
     <>
-    <h1>Welcome to School Managment Project</h1>
+    <Dashboard/>
     </>
   )
 }
