@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../src/index.css';
 import { Sidebar } from './components/Sidebar';
+import { ProgressReport } from './components/ProgressReport';
 import { Dashboard } from './components/Dashboard';
 import { Attendance } from './components/Attendance';
 import { Assignments } from './components/Assignments';
@@ -29,6 +30,8 @@ export default function App() {
         return <Notifications />;
       case 'profile':
         return <Profile />;
+      case 'Progress Report':
+        return <ProgressReport />;
       default:
         return <Dashboard />;
     }

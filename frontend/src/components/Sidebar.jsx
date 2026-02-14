@@ -17,6 +17,7 @@ const menuItems = [
   { id: 'assignments', label: 'Assignments', icon: ClipboardList },
   { id: 'exams', label: 'Exams & Results', icon: FileText },
   { id: 'resources', label: 'Learning Resources', icon: BookOpen },
+  { id: 'Progress Report', label: 'Progress Report', icon: ClipboardList },
   { id: 'notifications', label: 'Notifications', icon: Bell },
   { id: 'profile', label: 'Profile', icon: User },
 ];
