@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./teacher_pages/Dashboard.jsx";
 import Classes from "./teacher_pages/Classes.jsx";
+import ProgressReport from "./teacher_components/ProgressReport/ProgressReport.jsx";
 import Students from "./teacher_pages/Students.jsx";
 import Attendance from "./teacher_pages/Attendance.jsx";
 import Grades from "./teacher_pages/Grades.jsx";
@@ -22,7 +23,7 @@ const App = () => (
           <Route path="/grades" element={<Grades />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/assignments" element={<Assignments />} />
-          {/* <Route path="/messages" element={<Messages />} /> */}
+          <Route path="/ProgressReport" element={<ProgressReport />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
