@@ -67,3 +67,8 @@ npm run dev
 ```bash
 http://localhost/School-management-Project/backend/index.html
 ```
+
+(FOR CHECKING DATABASE CONNECTION)
+```bash
+http://localhost/School-management-Project/backend/test_connection.php
+```
