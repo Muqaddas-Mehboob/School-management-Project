@@ -1,7 +1,7 @@
 import { HeroSection } from "@/components/HeroSection";
 import { LoginForm } from "@/components/LoginForm";
 
-const Index = () => {
+const Login = () => {
   return (
     <div className="min-h-screen flex flex-col lg:flex-row overflow-x-hidden w-full max-w-full min-w-[10px]">
       {/* Left Side - Hero Section */}
@@ -19,5 +19,5 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Login;
 
