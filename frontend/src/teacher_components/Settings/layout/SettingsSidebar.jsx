@@ -35,7 +35,7 @@ export function SettingsSidebar({
             <h1 className="text-base sm:text-lg font-semibold">
               Settings
             </h1>
-            <p className="text-[10px] xs:text-xs sm:text-sm hidden sm:block text-muted-foreground">
+            <p className="text-[10px] xs:text-xs sm:text-sm hidden sm:block text-sidebar-muted">
               Teacher Dashboard
             </p>
           </div>
@@ -68,13 +68,13 @@ export function SettingsSidebar({
                 text-left transition-all
                 ${
                   isActive
-                    ? "bg-sidebar-primary text-sidebar-primary-foreground"
-                    : "text-sidebar-muted hover:bg-sidebar-accent hover:text-sidebar-foreground"
+                    ? "bg-sidebar-primary text-sidebar-primary  "
+                    : "text-sidebprimary hover:bg-sidebar-accent hover:text-sidebar-foreground"
                 }
               `}
             >
-              <Icon className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 text-muted-foreground" />
-              <span className="text-[10px] xs:text-xs sm:text-sm truncate text-muted-foreground">
+              <Icon className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${isActive ? "text-white" : "text-sidebar-muted"}` } />
+              <span className={`text-[10px] xs:text-xs sm:text-sm truncate ${isActive ? "text-white" : "text-sidebar-muted"}`} >
                 {item.label}
               </span>
             </button>
