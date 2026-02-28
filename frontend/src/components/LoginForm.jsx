@@ -1,5 +1,15 @@
 import { useState } from "react";
-import { Mail, Lock, Eye, EyeOff, LogIn, UserCircle, GraduationCap, Shield, UserPlus } from "lucide-react";
+import {
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  LogIn,
+  UserCircle,
+  GraduationCap,
+  Shield,
+  UserPlus,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -49,7 +59,7 @@ export const LoginForm = () => {
 
   const handleSignup = (e) => {
     e.preventDefault();
-    
+
     // Validate email
     if (!signupEmail || signupEmail.trim() === "") {
       toast({
@@ -59,7 +69,7 @@ export const LoginForm = () => {
       });
       return;
     }
-    
+
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(signupEmail)) {
@@ -70,7 +80,7 @@ export const LoginForm = () => {
       });
       return;
     }
-    
+
     // Validate password
     if (!signupPassword || signupPassword.trim() === "") {
       toast({
@@ -80,7 +90,7 @@ export const LoginForm = () => {
       });
       return;
     }
-    
+
     // Validate password length
     if (signupPassword.length < 6) {
       toast({
@@ -90,7 +100,7 @@ export const LoginForm = () => {
       });
       return;
     }
-    
+
     // Validate confirm password
     if (!signupConfirmPassword || signupConfirmPassword.trim() === "") {
       toast({
@@ -100,7 +110,7 @@ export const LoginForm = () => {
       });
       return;
     }
-    
+
     // Validate password match
     if (signupPassword !== signupConfirmPassword) {
       toast({
@@ -110,18 +120,18 @@ export const LoginForm = () => {
       });
       return;
     }
-    
+
     // All validations passed
     toast({
       title: "Account Created!",
       description: "You can now login with your credentials.",
     });
-    
+
     // Reset form
     setSignupEmail("");
     setSignupPassword("");
     setSignupConfirmPassword("");
-    
+
     // Switch to login tab
     setActiveTab("login");
   };
@@ -236,7 +246,11 @@ export const LoginForm = () => {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-2 xxs:right-2.5 xs:right-3 sm:right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors z-10"
                 >
-                  {showPassword ? <EyeOff className="w-3.5 h-3.5 xxs:w-4 xxs:h-4 xs:w-4 xs:h-4 sm:w-5 sm:h-5" /> : <Eye className="w-3.5 h-3.5 xxs:w-4 xxs:h-4 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />}
+                  {showPassword ? (
+                    <EyeOff className="w-3.5 h-3.5 xxs:w-4 xxs:h-4 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
+                  ) : (
+                    <Eye className="w-3.5 h-3.5 xxs:w-4 xxs:h-4 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
+                  )}
                 </button>
               </div>
             </div>
@@ -249,11 +263,17 @@ export const LoginForm = () => {
                   checked={rememberMe}
                   onCheckedChange={(checked) => setRememberMe(checked === true)}
                 />
-                <label htmlFor="remember" className="text-[9px] xxs:text-[10px] xs:text-xs sm:text-sm text-muted-foreground cursor-pointer">
+                <label
+                  htmlFor="remember"
+                  className="text-[9px] xxs:text-[10px] xs:text-xs sm:text-sm text-muted-foreground cursor-pointer"
+                >
                   Remember me
                 </label>
               </div>
-              <a href="#" className="text-[9px] xxs:text-[10px] xs:text-xs sm:text-sm text-link hover:underline font-medium">
+              <a
+                href="#"
+                className="text-[9px] xxs:text-[10px] xs:text-xs sm:text-sm text-primary hover:underline font-medium"
+              >
                 Forgot Password?
               </a>
             </div>
@@ -266,11 +286,16 @@ export const LoginForm = () => {
               className={`mb-2 xxs:mb-2.5 xs:mb-3 sm:mb-4 ${getButtonColor()}`}
             >
               <LogIn className="w-3.5 h-3.5 xxs:w-4 xxs:h-4 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
-              <span className="text-[9px] xxs:text-[10px] xs:text-xs sm:text-sm">Login to Dashboard</span>
+              <span className="text-[9px] xxs:text-[10px] xs:text-xs sm:text-sm">
+                Login to Dashboard
+              </span>
             </Button>
           </form>
         ) : (
-          <form onSubmit={handleSignup} className="flex flex-col flex-1 min-h-0 overflow-y-auto">
+          <form
+            onSubmit={handleSignup}
+            className="flex flex-col flex-1 min-h-0 overflow-y-auto"
+          >
             {/* Compact Grid Layout for Signup */}
             <div className="grid grid-cols-1 gap-1 xxs:gap-1.5 xs:gap-2 sm:gap-2.5 flex-1 min-h-0 pb-2">
               {/* Email Input */}
@@ -311,9 +336,15 @@ export const LoginForm = () => {
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-1.5 xxs:right-2 xs:right-2.5 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors z-10 p-0.5 min-w-[20px] min-h-[20px] flex items-center justify-center"
-                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
                   >
-                    {showPassword ? <EyeOff className="w-3 h-3 xxs:w-3.5 xxs:h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5" /> : <Eye className="w-3 h-3 xxs:w-3.5 xxs:h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />}
+                    {showPassword ? (
+                      <EyeOff className="w-3 h-3 xxs:w-3.5 xxs:h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
+                    ) : (
+                      <Eye className="w-3 h-3 xxs:w-3.5 xxs:h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
+                    )}
                   </button>
                 </div>
               </div>
@@ -337,9 +368,15 @@ export const LoginForm = () => {
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-1.5 xxs:right-2 xs:right-2.5 sm:right-3 md:right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors z-10 p-0.5 min-w-[20px] min-h-[20px] flex items-center justify-center"
-                    aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                    aria-label={
+                      showConfirmPassword ? "Hide password" : "Show password"
+                    }
                   >
-                    {showConfirmPassword ? <EyeOff className="w-3 h-3 xxs:w-3.5 xxs:h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5" /> : <Eye className="w-3 h-3 xxs:w-3.5 xxs:h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />}
+                    {showConfirmPassword ? (
+                      <EyeOff className="w-3 h-3 xxs:w-3.5 xxs:h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
+                    ) : (
+                      <Eye className="w-3 h-3 xxs:w-3.5 xxs:h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
+                    )}
                   </button>
                 </div>
               </div>
@@ -354,7 +391,9 @@ export const LoginForm = () => {
                 className={`w-full ${getButtonColor()} min-h-[32px] xxs:min-h-[36px] xs:min-h-[40px] sm:min-h-[44px] text-[8px] xxs:text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-bold`}
               >
                 <UserPlus className="w-3 h-3 xxs:w-3.5 xxs:h-3.5 xs:w-4 xs:h-4 sm:w-5 sm:h-5 shrink-0" />
-                <span className="font-semibold whitespace-nowrap overflow-hidden text-ellipsis">Create Account</span>
+                <span className="font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+                  Create Account
+                </span>
               </Button>
             </div>
           </form>

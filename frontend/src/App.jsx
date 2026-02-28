@@ -15,19 +15,9 @@ import Attendance from "./teacher_pages/Attendance.jsx";
 import Grades from "./teacher_pages/Grades.jsx";
 import Schedule from "./teacher_pages/Schedule.jsx";
 import Assignments from "./teacher_pages/Assignments.jsx";
-import Messages from "./teacher_pages/Messages.jsx";
+
 import Settings from "./teacher_pages/Settings.jsx";
 
-import Dashboard from "./teacher_pages/Dashboard.jsx";
-import Classes from "./teacher_pages/Classes.jsx";
-import ProgressReport from "./teacher_components/ProgressReport/ProgressReport.jsx";
-import Students from "./teacher_pages/Students.jsx";
-import Attendance from "./teacher_pages/Attendance.jsx";
-import Grades from "./teacher_pages/Grades.jsx";
-import Schedule from "./teacher_pages/Schedule.jsx";
-import Assignments from "./teacher_pages/Assignments.jsx";
-import Messages from "./teacher_pages/Messages.jsx";
-import Settings from "./teacher_pages/Settings.jsx";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -41,14 +31,14 @@ const App = () => (
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/student/*" element={<StudentLayout />} />
           <Route path="/teacherdashboard" element={<Dashboard />} />
-          <Route path="/teacherdashboard/classes" element={<Classes />} />
-          <Route path="/teacherdashboard/students" element={<Students />} />
-          <Route path="/teacherdashboard/attendance" element={<Attendance />} />
-          <Route path="/teacherdashboard/grades" element={<Grades />} />
-          <Route path="/teacherdashboard/schedule" element={<Schedule />} />
-          <Route path="/teacherdashboard/assignments" element={<Assignments />} />
-          <Route path="/teacherdashboard/ProgressReport" element={<ProgressReport />} />
-          <Route path="/teacherdashboard/settings" element={<Settings />} />
+          <Route path="/teacherDash/classes" element={<Classes />} />
+          <Route path="/teacherDash/students" element={<Students />} />
+          <Route path="/teacherDash/attendance" element={<Attendance />} />
+          <Route path="/teacherDash/grades" element={<Grades />} />
+          <Route path="/teacherDash/schedule" element={<Schedule />} />
+          <Route path="/teacherDash/assignments" element={<Assignments />} />
+          <Route path="/teacherDash/ProgressReport" element={<ProgressReport />} />
+          <Route path="/teacherDash/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

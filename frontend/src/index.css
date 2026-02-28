@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* =========================
+   BASE THEME TOKENS
+   ========================= */
 @layer base {
   :root {
-    /* Academic color palette - warm and professional */
+    /* Academic color palette (primary theme) */
     --background: 40 33% 98%;
     --foreground: 222 47% 11%;
 
@@ -14,18 +19,15 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Navy blue primary - trustworthy and academic */
     --primary: 222 47% 20%;
     --primary-foreground: 40 33% 98%;
 
-    /* Soft cream secondary */
     --secondary: 40 25% 94%;
     --secondary-foreground: 222 47% 20%;
 
     --muted: 40 20% 92%;
     --muted-foreground: 222 20% 45%;
 
-    /* Warm amber accent */
     --accent: 38 92% 50%;
     --accent-foreground: 222 47% 11%;
 
@@ -38,15 +40,13 @@
 
     --radius: 0.75rem;
 
-    /* Success color */
+    /* Status colors */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
 
-    /* Warning color */
     --warning: 38 92% 50%;
     --warning-foreground: 222 47% 11%;
 
-    /* Info color */
     --info: 199 89% 48%;
     --info-foreground: 0 0% 100%;
 
@@ -60,8 +60,22 @@
     --sidebar-border: 222 30% 25%;
     --sidebar-ring: 38 92% 50%;
     --sidebar-muted: 222 4% 52%;
+
+    /* Modern UI tokens (preserved) */
+    --hero-bg: 222 47% 15%;
+    --hero-foreground: 0 0% 100%;
+    --hero-muted: 220 20% 70%;
+
+    --role-teacher: 217 91% 60%;
+    --role-student: 270 60% 55%;
+    --role-admin: 142 71% 45%;
+    --feature-icon-bg: 217 91% 60%;
+    --link-color: 217 91% 60%;
   }
 
+  /* =========================
+     DARK MODE
+     ========================= */
   .dark {
     --background: 222 47% 8%;
     --foreground: 40 33% 96%;
@@ -93,26 +107,27 @@
 
     --sidebar-background: 222 47% 10%;
     --sidebar-foreground: 40 33% 96%;
-    --sidebar-primary: 38 92% 50%;
-    --sidebar-primary-foreground: 222 47% 11%;
     --sidebar-accent: 222 47% 18%;
-    --sidebar-accent-foreground: 40 33% 96%;
     --sidebar-border: 222 30% 18%;
-    --sidebar-ring: 38 92% 50%;
-    --sidebar-muted: 222 4% 52%;
   }
-}
 
-@layer base {
+  /* =========================
+     GLOBAL ELEMENT STYLES
+     ========================= */
   * {
     @apply border-border;
   }
 
+  html {
+    font-size: clamp(12px, 1vw, 16px);
+    min-width: 320px;
+  }
+
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
-    min-width: 10px;
-    overflow-x: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -120,32 +135,27 @@
     @apply font-semibold tracking-tight;
   }
 
-  /* Ensure everything is responsive down to 10px */
-  html {
-    min-width: 10px;
-  }
-
-  /* Responsive text sizing for very small screens */
-  @media (max-width: 320px) {
-    body {
-      font-size: 12px;
-    }
-  }
-
-  @media (max-width: 10px) {
-    body {
-      font-size: 10px;
-    }
+  #root {
+    overflow-x: hidden;
   }
 }
 
+/* =========================
+   UTILITIES
+   ========================= */
 @layer utilities {
   .glass-card {
     @apply bg-card/80 backdrop-blur-sm border border-border/50 shadow-lg;
   }
+
   .hero-gradient {
-    background: linear-gradient(135deg, hsl(222 47% 15%) 0%, hsl(222 47% 11%) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(222 47% 15%) 0%,
+      hsl(222 47% 11%) 100%
+    );
   }
+
   .sidebar-glow {
     box-shadow: 0 0 40px -10px hsl(var(--sidebar-primary) / 0.3);
   }
@@ -162,9 +172,34 @@
     transform: translateY(-2px);
     box-shadow: 0 8px 30px -8px hsl(var(--primary) / 0.15);
   }
+
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-out forwards;
+  }
+
+  .animate-slide-in-left {
+    animation: slide-in-left 0.3s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.2s ease-out forwards;
+  }
+
+  .animate-pulse-subtle {
+    animation: pulse-subtle 2s ease-in-out infinite;
+  }
+
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+  .stagger-5 { animation-delay: 0.25s; }
+  .stagger-6 { animation-delay: 0.3s; }
 }
 
-/* Custom scrollbar */
+/* =========================
+   SCROLLBAR
+   ========================= */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -184,49 +219,28 @@
   background: hsl(var(--muted-foreground) / 0.5);
 }
 
-/* Animations */
+/* =========================
+   ANIMATIONS
+   ========================= */
 @keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes pulse-subtle {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
-
 .animate-fade-in {
   animation: fade-in 0.4s ease-out forwards;
 }

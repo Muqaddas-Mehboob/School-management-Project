@@ -24,18 +24,18 @@ export function Sidebar({ onClose }) {
   };
 
   const menuItems = [
-    { icon: LayoutDashboard, label: "Dashboard", path: "/teacherdashboard" },
-    { icon: BookOpen, label: "My Classes", path: "/teacherdashboard/classes" },
-    { icon: Users, label: "Students", path: "/teacherdashboard/students" },
-    { icon: ClipboardCheck, label: "Attendance", path: "/teacherdashboard/attendance" },
-    { icon: GraduationCap, label: "Grades", path: "/teacherdashboard/grades" },
-    { icon: Calendar, label: "Schedule", path: "/teacherdashboard/schedule" },
-    { icon: FileText, label: "Assignments", path: "/teacherdashboard/Assignments" },
+    { icon: LayoutDashboard, label: "Dashboard", path: "/teacherDashboard" },
+    { icon: BookOpen, label: "My Classes", path: "/teacherDash/classes" },
+    { icon: Users, label: "Students", path: "/teacherDash/students" },
+    { icon: ClipboardCheck, label: "Attendance", path: "/teacherDash/attendance" },
+    { icon: GraduationCap, label: "Grades", path: "/teacherDash/grades" },
+    { icon: Calendar, label: "Schedule", path: "/teacherDash/schedule" },
+    { icon: FileText, label: "Assignments", path: "/teacherDash/Assignments" },
     // { icon: MessageSquare, label: "Messages", path: "/messages" },
   ];
 
   const bottomMenuItems = [
-    { icon: Settings, label: "Settings", path: "/settings" },
+    { icon: Settings, label: "Settings", path: "/teacherDash/settings" },
   ];
 
   return (
