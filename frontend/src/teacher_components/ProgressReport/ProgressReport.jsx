@@ -14,6 +14,7 @@ import {
   Calendar,
   MessageSquare
 } from 'lucide-react';
+import { DashboardLayout } from '../layout/DashboardLayout';
 
 export function ProgressReport() {
   const [userRole, setUserRole] = useState('student'); // 'student' or 'teacher'
@@ -122,6 +123,7 @@ export function ProgressReport() {
   };
 
   return (
+    <DashboardLayout pageTitle="ProgressReport">
     <div className="p-4 sm:p-6 lg:p-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
       {/* Header */}
       <div className="mb-6">
@@ -583,6 +585,7 @@ export function ProgressReport() {
         </>
       )}
     </div>
+    </DashboardLayout>
   );
 }
 

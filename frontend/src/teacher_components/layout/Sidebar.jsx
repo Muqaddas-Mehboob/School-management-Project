@@ -12,6 +12,7 @@ import {
   LogOut,
   X,
   School,
+  TrendingUp
 } from "lucide-react";
 import { Button } from "@/teacher_components/ui/button";
 
@@ -30,6 +31,7 @@ export function Sidebar({ onClose }) {
     { icon: ClipboardCheck, label: "Attendance", path: "/teacherDash/attendance" },
     { icon: GraduationCap, label: "Grades", path: "/teacherDash/grades" },
     { icon: Calendar, label: "Schedule", path: "/teacherDash/schedule" },
+    { icon: TrendingUp, label: "Progress Report", path: "/teacherDash/ProgressReport" },
     { icon: FileText, label: "Assignments", path: "/teacherDash/Assignments" },
     // { icon: MessageSquare, label: "Messages", path: "/messages" },
   ];
