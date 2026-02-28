@@ -18,6 +18,16 @@ import Assignments from "./teacher_pages/Assignments.jsx";
 import Messages from "./teacher_pages/Messages.jsx";
 import Settings from "./teacher_pages/Settings.jsx";
 
+import Dashboard from "./teacher_pages/Dashboard.jsx";
+import Classes from "./teacher_pages/Classes.jsx";
+import ProgressReport from "./teacher_components/ProgressReport/ProgressReport.jsx";
+import Students from "./teacher_pages/Students.jsx";
+import Attendance from "./teacher_pages/Attendance.jsx";
+import Grades from "./teacher_pages/Grades.jsx";
+import Schedule from "./teacher_pages/Schedule.jsx";
+import Assignments from "./teacher_pages/Assignments.jsx";
+import Messages from "./teacher_pages/Messages.jsx";
+import Settings from "./teacher_pages/Settings.jsx";
 const queryClient = new QueryClient();
 
 const App = () => (
