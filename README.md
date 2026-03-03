@@ -85,6 +85,12 @@ http://localhost/School-management-Project/backend/index.html
 ```
 
 (FOR CHECKING DATABASE CONNECTION)
+
+**PREREQUISITES**  
+- Must have **XAMPP** installed 
+- Must add **MONGODB.DLL** for connecting mongodb
+- Must include **COMPOSER** to manage external libraries for php
+
 ```bash
-http://localhost/School-management-Project/backend/test_connection.php
+http://localhost/School-management-Project/backend/config/db.php
 ```
