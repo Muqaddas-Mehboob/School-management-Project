@@ -1,0 +1,1 @@
+Use same naming convention as the other routes, e.g. userRoute.php 

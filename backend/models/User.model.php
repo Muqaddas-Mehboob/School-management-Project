@@ -1,0 +1,1 @@
+<!-- Use same naming convention as the other models, e.g. user.model.php -->

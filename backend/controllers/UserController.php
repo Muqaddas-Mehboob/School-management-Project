@@ -1,0 +1,1 @@
+<!-- Use same naming convention as the other controllers, e.g. UserController.php -->
