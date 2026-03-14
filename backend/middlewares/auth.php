@@ -1,1 +1,0 @@
-<!-- Use same naming convention as the other middlewares, e.g. auth.php -->

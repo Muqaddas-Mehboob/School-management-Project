@@ -9,3 +9,4 @@
     <h1> This is our school managment project</h1>
 </body>
 </html>
+

@@ -11,8 +11,8 @@ $dbName = $_ENV['DB_NAME'];
 try {
     $client = new MongoDB\Client($uri);
     $database = $client->$dbName;
+    return $database;
 
-    echo "Connected successfully!";
 } catch (Exception $e) {
     echo "Connection failed: " . $e->getMessage();
 }

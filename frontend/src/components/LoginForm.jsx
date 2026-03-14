@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Mail,
   Lock,
@@ -10,6 +10,7 @@ import {
   Shield,
   UserPlus,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -24,8 +25,9 @@ export const LoginForm = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [contactDialogOpen, setContactDialogOpen] = useState(false);
+  const [token, settoken] = useState(null);
   const { toast } = useToast();
-
+  const navigate = useNavigate();
   // Login form state
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -40,8 +42,37 @@ export const LoginForm = () => {
     { id: "student", label: "Student", icon: GraduationCap },
     { id: "admin", label: "Admin", icon: Shield },
   ];
-
-  const handleLogin = (e) => {
+  const validatetoken = async () => {
+    try {
+      if (!token) {
+        return;
+      }
+      const response = await fetch(
+        "http://localhost/School-management-Project/backend/verify",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      const data = await response.json();
+      if (response) {
+        if (data.success) {
+          if (data.expired) {
+            settoken(data.token);
+          }
+          toast({
+            title: "confirmed",
+            description: "user verified",
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (!loginEmail || !loginPassword) {
       toast({
@@ -51,13 +82,59 @@ export const LoginForm = () => {
       });
       return;
     }
-    toast({
-      title: "Login Successful",
-      description: `Welcome back, ${selectedRole}!`,
-    });
+    const response = await fetch(
+      "http://localhost/School-management-Project/backend/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: loginEmail,
+          password: loginPassword,
+          role: selectedRole,
+        }),
+      },
+    );
+    const data = await response.json();
+    if (!response.ok) {
+      toast({
+        title: "Error",
+        description: "Login failed",
+        variant: "destructive",
+      });
+    } else {
+      console.log("data.success", data.success);
+      if (data.success) {
+        toast({
+          title: "Login Successful",
+          description: `Welcome back, ${selectedRole}!`,
+        });
+        settoken(data.token);
+        localStorage.setItem("token", data.token);
+        console.log("selectedRole", selectedRole);
+        if (selectedRole === "admin") {
+          navigate("/admin");
+        }
+
+        if (selectedRole === "teacher") {
+          navigate("/teacherdashboard");
+        }
+
+        if (data.role === "student") {
+          navigate("/studentdashboard");
+        }
+      } else {
+        toast({
+          title: "Error",
+          description: "Login failed",
+          variant: "destructive",
+        });
+      }
+    }
   };
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
 
     // Validate email
@@ -122,10 +199,33 @@ export const LoginForm = () => {
     }
 
     // All validations passed
-    toast({
-      title: "Account Created!",
-      description: "You can now login with your credentials.",
-    });
+    const response = await fetch(
+      "http://localhost/School-management-Project/backend/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: signupEmail,
+          password: signupPassword,
+          role: selectedRole,
+        }),
+      },
+    );
+    console.log(response);
+    if (!response.ok) {
+      toast({
+        title: "Error",
+        description: "Failed to create account",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Account Created!",
+        description: "You can now login with your credentials.",
+      });
+    }
 
     // Reset form
     setSignupEmail("");
@@ -136,6 +236,13 @@ export const LoginForm = () => {
     setActiveTab("login");
   };
 
+  const handlelogout = () => {
+    settoken(null);
+    toast({
+      title: "Logout Successful",
+      description: "You have been logged out.",
+    });
+  };
   const getButtonColor = () => {
     switch (selectedRole) {
       case "teacher":
@@ -149,6 +256,11 @@ export const LoginForm = () => {
     }
   };
 
+  useEffect(() => {
+    if (token) {
+      validatetoken();
+    }
+  }, [token]);
   return (
     <div className="w-full max-w-md mx-auto min-w-[10px] h-full flex flex-col overflow-hidden">
       {/* Tab Navigation */}
