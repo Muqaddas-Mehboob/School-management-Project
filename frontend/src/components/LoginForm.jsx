@@ -121,8 +121,8 @@ export const LoginForm = () => {
           navigate("/teacherdashboard");
         }
 
-        if (data.role === "student") {
-          navigate("/studentdashboard");
+        if (selectedRole === "student") {
+          navigate("/student");
         }
       } else {
         toast({
