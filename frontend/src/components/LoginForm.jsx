@@ -48,7 +48,7 @@ export const LoginForm = () => {
         return;
       }
       const response = await fetch(
-        "http://localhost/School-management-Project/backend/verify",
+        "http://localhost/School-management-Project/backend/api/verify",
         {
           method: "POST",
           headers: {
@@ -83,7 +83,7 @@ export const LoginForm = () => {
       return;
     }
     const response = await fetch(
-      "http://localhost/School-management-Project/backend/login",
+      "http://localhost/School-management-Project/backend/api/login",
       {
         method: "POST",
         headers: {
@@ -200,7 +200,7 @@ export const LoginForm = () => {
 
     // All validations passed
     const response = await fetch(
-      "http://localhost/School-management-Project/backend/register",
+      "http://localhost/School-management-Project/backend/api/register",
       {
         method: "POST",
         headers: {
