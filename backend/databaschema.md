@@ -128,11 +128,6 @@ All APIs expect the `Authorization: Bearer <jwt>` header (except `/api/auth/*`).
 | POST | `/api/schedule/events` | Create schedule event. | Teacher |
 | DELETE | `/api/schedule/events/{id}` | Delete event. | Teacher |
 | GET | `/api/schedule/class/{classId}` | Class timetable (student view). | Student |
-| **Messaging** ||||
-| GET | `/api/messages/conversations` | List conversations for the logged‑in user. | Authenticated |
-| GET | `/api/messages/conversations/{id}` | Get thread messages. | Authenticated |
-| POST | `/api/messages` | Start new conversation / send message. | Authenticated |
-| PUT | `/api/messages/{id}/read` | Mark a message as read. | Authenticated |
 | **Notifications** ||||
 | GET | `/api/notifications` | List notifications (optionally `?read=false`). | Authenticated |
 | PUT | `/api/notifications/{id}/read` | Mark as read. | Authenticated |
