@@ -41,6 +41,20 @@ class BaseModel {
         }
     }
     
+    public function updateAll($id, $data) {
+        try {
+            $objectId = new MongoDB\BSON\ObjectId($id);
+            $data['updatedAt'] = date('c');
+            $result = $this->collection->updateMany(
+                ['_id' => $objectId],
+                ['$set' => $data]
+            );
+            return $result->getModifiedCount() > 0;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+    
     public function deleteById($id) {
         try {
             $objectId = new MongoDB\BSON\ObjectId($id);
