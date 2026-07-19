@@ -24,11 +24,19 @@ class UserController {
     public function verify($token)
     {
         return $this->authService->verify($token);
-    
     }
+
+    /**
+     * Exchange a plain refresh token for a new access token.
+     * Delegates to AuthService::refresh() → AuthMiddleware::refreshToken().
+     */
+    public function refresh(string $refreshToken): array
+    {
+        return $this->authService->refresh($refreshToken);
+    }
+
     public function logout($data)
     {
         return $this->authService->logout($data);
-    
-}
+    }
 }

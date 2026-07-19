@@ -39,7 +39,10 @@ switch ($module) {
     case 'login':
     case 'verify':
     case 'logout':
-        // User requested not to change auth, redirect to existing userRoute
+    case 'refresh':          // V-03/V-04: new dedicated token-refresh endpoint
+    case 'forgot-password':  // Task 2 - Step 1
+    case 'verify-otp':       // Task 2 - Step 2
+    case 'reset-password':   // Task 2 - Step 3
         require __DIR__ . '/routes/userRoute.php';
         break;
     case 'school':
