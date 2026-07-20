@@ -45,6 +45,9 @@ switch ($module) {
     case 'reset-password':   // Task 2 - Step 3
         require __DIR__ . '/routes/userRoute.php';
         break;
+    case 'profile':
+        require __DIR__ . '/routes/profileRoute.php';
+        break;
     case 'school':
         require __DIR__ . '/routes/schoolRoute.php';
         break;
